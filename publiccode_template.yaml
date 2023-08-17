@@ -1,0 +1,62 @@
+publiccodeYmlVersion: "0.2"
+# Instructies: https://github.com/OpenCatalogi/OpenCatalogiBundle/blob/main/docs/Publiccode.md
+name: %%INSTACE_NAME%%
+url: "https://github.com/Sudwest-Fryslan/%%INSTACE_NAME%%.git"
+softwareVersion: "${instance_version}"    # Optional
+releaseDate: ${versionDate_yyyymmdd}
+applicationSuite: het-integratie-platform
+platforms:
+  - frank-framework
+
+categories:
+  - translation
+  - integration
+  - migration
+
+developmentStatus: stable
+
+softwareType: "standalone/other"
+
+description:
+  en:
+    shortDescription: >
+      The %%INSTACE_NAME%% component is an integration component.
+
+    longDescription: >
+      The %%INSTACE_NAME%% component is an integration component.
+
+    features:
+      - Statelessness
+      - Atomicity
+      - Loose Coupling
+      - Error Tracking
+      - Standardized Interface
+
+legal:
+  license: European Union Public License 1.2
+
+maintenance:
+  type: "community"
+
+  contacts:
+    - name: Eduard Witteveen
+
+localisation:
+  localisationReady: true
+  availableLanguages:
+    - en
+# De Nederlandse uitbreiding op de Common Ground standaard
+nl:
+  countryExtensionVersion: "1.0"
+  commonground:
+    - layerType: "integration"
+    - installationType: "docker"
+    - intendedOrganisations: "https://github.com/Sudwest-Fryslan"
+  gemma:
+    bedrijfsfuncties:
+      - "sadsad"
+      - "sadsad"
+    bedrijfsservices:
+      - "sadsad"
+      - "sadsad"
+    applicatiefunctie: "referentie component"
