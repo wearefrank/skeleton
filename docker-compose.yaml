@@ -10,6 +10,7 @@ services:
       application.server.type.custom: ${TRANSACTION_MANAGER:-NARAYANA}
       credentialFactory.class: nl.nn.credentialprovider.PropertyFileCredentialFactory
       credentialFactory.map.properties: /opt/frank/secrets/credentials.properties
+      TZ: ${TIME_ZONE:-Europe/Amsterdam}
     env_file:
       - .env
     volumes:
