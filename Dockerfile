@@ -1,4 +1,6 @@
-FROM wearefrank/frank-framework:latest
+ARG FF_VERSION=latest
+
+FROM frankframework/frankframework:${FF_VERSION}
 
 ### Uncommend this section if the Frank! contains custom classes.
 ## Copy dependencies
@@ -14,13 +16,17 @@ FROM wearefrank/frank-framework:latest
 #RUN rm -rf /tmp/java
 
 # Copy database connection settings
-COPY --chown=tomcat context.xml /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
+COPY --chown=tomcat src/main/webapp/META-INF/context.xml /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
 
 # Copy Frank!
-COPY --chown=tomcat configurations/ /opt/frank/configurations/
-COPY --chown=tomcat tests/ /opt/frank/testtool/
-COPY --chown=tomcat classes/ /opt/frank/resources/
+COPY --chown=tomcat src/main/configurations/ /opt/frank/configurations/
+COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
+COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
-# Martijn May 2 2023: Copied from ZaakBrug and edited in a trivial way.
-HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=3 \
-  CMD curl --fail --silent http://localhost:8080/iaf/api/server/health || (curl --silent http://localhost:8080/iaf/api/server/health && exit 1)
+# COPY --chown=tomcat entrypoint.sh /scripts/entrypoint.sh
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=60 \
+	CMD curl --fail --silent http://localhost:8080/iaf/api/server/health || (curl --silent http://localhost:8080/iaf/api/server/health && exit 1)
+
+# ENTRYPOINT ["/scripts/entrypoint.sh"]
+# CMD ["catalina.sh", "run"]

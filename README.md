@@ -1,4 +1,4 @@
-# Skeleton
+# {{ cookiecutter.instance_name }}
 
 Project for Frank applications deployed by JAR or Docker
 
@@ -22,8 +22,8 @@ This "empty" Frank! will have configuration files to build and deploy.
 * Docker compose
 * Publicode (WIP)
 * GitHub Actions
-  * Release
-  * Docker build & upload
+  * Continuous Integration workflow
+  * Release workflow
 
 Please check if you deem all these functionalities necessary, if not remove them.
 
@@ -41,6 +41,6 @@ Please check if you deem all these functionalities necessary, if not remove them
 
 | Template variable             | Description                                                                                    | Example        |
 |-------------------------------|------------------------------------------------------------------------------------------------|----------------|
-| `%%INSTACE_NAME%%`            | The name of the Frank! to be deployed. It's best to keep this inline with the name of the repo | Frank2Skeleton |
-| `%%INSTANCE_NAME_LOWERCASE%%` | Lowercase version of the instance name.                                                        | frank2example  |
-| `%%CONFIGURATION_NAME%%`      | The name of the first configuration (others have to be added manually)                         | Sans           |
+| `{{ cookiecutter.instance_name }}`            | The name of the Frank! to be deployed. It's best to keep this inline with the name of the repo | Frank2Skeleton |
+| `{{ cookiecutter.instance_name_lc }}`         | Lowercase version of the instance name.                                                        | frank2example  |
+| `{{ cookiecutter.configuration_name }}`       | The name of the first configuration (others have to be added manually)                         | Sans           |
