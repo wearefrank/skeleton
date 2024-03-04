@@ -31,11 +31,13 @@ Please check if you deem all these functionalities necessary, if not remove them
 
 ### Steps
 
-1. Clone or download this project
-2. Find-and-replace the template variables listed in the [template variables](#Template variables) section
-3. Add your own configuration files
-4. Make sure that the GitHub action credentials are added
-5. Commit & Profit!
+1. Create a new repository and choose this as template repository
+2. Clone the newly created project
+3. Fill in the skeletonrc.json to replace the template strings
+4. Run the skeleton.js script with node e.g. `node ./skeleton.js`
+5. Add your own configuration files
+6. Make sure that the GitHub action credentials are added
+7. Commit & Profit!
 
 ### Template variables
 
