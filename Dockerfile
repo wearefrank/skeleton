@@ -3,24 +3,24 @@ ARG FF_VERSION=latest
 FROM frankframework/frankframework:${FF_VERSION} as ff-base
 
 ## Uncomment this section if the Frank! contains custom classes.
-# # Copy dependencies
-# COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
-# COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
+# Copy dependencies
+COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
+COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
 
-# # Compile custom class
-# FROM eclipse-temurin:17-jdk-jammy AS custom-code-builder
+# Compile custom class
+FROM eclipse-temurin:17-jdk-jammy AS custom-code-builder
 
-# # Copy dependencies
-# COPY --from=ff-base /usr/local/tomcat/lib/ /usr/local/tomcat/lib/
-# COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT
+# Copy dependencies
+COPY --from=ff-base /usr/local/tomcat/lib/ /usr/local/tomcat/lib/
+COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT
 
-# # Copy custom class
-# COPY src/main/java /tmp/java
-# # RUN mkdir /tmp/classes && \
-# #     javac \
-# #     /tmp/java/org/<path-to-customcode-file>.java \
-# #     -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
-# #     -verbose -d /tmp/classes
+# Copy custom class
+COPY src/main/java /tmp/java
+RUN mkdir /tmp/classes && \
+    javac \
+    /tmp/java/org/<path-to-customcode-file>.java \
+    -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
+    -verbose -d /tmp/classes
 
 FROM ff-base
 
