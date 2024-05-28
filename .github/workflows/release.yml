@@ -61,7 +61,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #4.1.1
         with:
-          token: ${{ secrets.GITHUB_PAT }}
+          token: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
       - name: Download Pre-build Artifacts
         uses: actions/download-artifact@eaceaf801fd36c7dee90939fad912460b18a1ffe #4.1.2
@@ -86,8 +86,8 @@ jobs:
       - name: Semantic Release
         run: semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
-          GH_TOKEN: ${{ secrets.GITHUB_PAT }}
+          GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
+          GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
   docker-release:
     uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@main
