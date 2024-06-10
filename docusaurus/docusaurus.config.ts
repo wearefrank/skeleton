@@ -57,7 +57,7 @@ const config: Config = {
     navbar: {
       title: '{{ cookiecutter.instance_name }}',
       logo: {
-        alt: 'WeAreFrank Logo',
+        alt: 'WeAreFrank',
         src: 'img/waf-logo-192x192.png',
       },
       items: [
