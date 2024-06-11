@@ -100,3 +100,12 @@ jobs:
       dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
     with:
       version: ${{ needs.analyze-commits.outputs.version-next }}
+
+  docusaurus-release:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Set to true to enable Docusaurus publishing to GitHub Pages
+    if: false
+    uses: wearefrank/ci-cd-templates/.github/workflows/docusaurus-release.yml@main
