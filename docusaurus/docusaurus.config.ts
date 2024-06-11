@@ -97,10 +97,6 @@ const config: Config = {
           title: 'Resources',
           items: [
             {
-              label: 'GitHub',
-              href: `https://github.com/${organizationName}/${projectName}`,
-            },
-            {
               label: 'Frank!Framework GitHub',
               href: 'https://github.com/frankframework/frankframework',
             },
@@ -111,10 +107,6 @@ const config: Config = {
             {
               label: 'Frank!Doc',
               href: 'https://frankdoc.frankframework.org/#/All',
-            },
-            {
-              label: 'Frank\'s Insights',
-              href: 'https://wearefrank.nl/insights',
             },
             {
               label: 'WeAreFrank!TV',
