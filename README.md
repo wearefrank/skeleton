@@ -42,7 +42,7 @@ Please check if you deem all these functionalities necessary, if not remove them
 ### Configure Docusaurus GitHub Pages deployment
 1. Navigate to `GitHub -> Repository -> Pages -> Build and deployment` and select `GitHub Actions` from the **source** dropdown.
 2. Navigate to `GitHub -> Repository -> Environments` and create a **New Environment** called `github-pages` if it does not exist yet.
-3. Enable 
+3. Enable the "docusaurus-release" job in `.github/workflows/release.yml` by setting "if" to `true`.
 
 ## Local Development Docusaurus
 1. Navigate to "docusaurus" subfolder with `cd ./docusaurus`.
@@ -50,7 +50,7 @@ Please check if you deem all these functionalities necessary, if not remove them
 3. Serve Docusaurus webserver locally with `docusaurus start`. By default it is served at `http://localhost:3000/`.
 4. Basic guide on how to use Docusaurus and a styleguide can be found at `./docusaurus/docs/_README.md`.
 
-### Template variables
+## Template variables
 
 | Template variable             | Description                                                                                    | Example        |
 |-------------------------------|------------------------------------------------------------------------------------------------|----------------|
