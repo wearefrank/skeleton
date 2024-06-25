@@ -92,8 +92,8 @@ jobs:
   docker-release:
     uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@main
     needs: 
-    - analyze-commits
-    - release
+      - analyze-commits
+      - release
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -106,6 +106,8 @@ jobs:
       contents: read
       pages: write
       id-token: write
+    needs: 
+      - release
     # Set to true to enable Docusaurus publishing to GitHub Pages
     if: false
     uses: wearefrank/ci-cd-templates/.github/workflows/docusaurus-release.yml@main
