@@ -2,7 +2,37 @@
 
 This project builds the following artifacts:
 * A docker image that can be used to run this application stand-alone.
-* A .jar file with only the Frank configuration of this project. The .jar file can be uploaded in het-integratie-platform, see https://github.com/wearefrank/het-integratie-platform. 
+
+# Development
+## Local Development Docusaurus
+1. Navigate to "docusaurus" subfolder.
+    ```
+    cd ./docusaurus
+    ```
+
+2. Install dependencies.
+    ```
+    npm install
+    ```
+
+3. Serve Docusaurus webserver locally.
+    ```
+    ./node_modules/.bin/docusaurus.cmd start
+    ```
+    By default it is served at `http://localhost:3000/`.
+
+4. Basic guide on how to use Docusaurus and a styleguide can be found at `./docusaurus/docs/_README.md`.
+
+# Dependencies
+## Update Docusaurus dependencies
+1. Navigate to the 'docusaurus' subfolder:
+    ```
+    cd ./docusaurus
+    ```
+2. Update dependencies:
+    ```
+    npm i @docusaurus/core@latest @docusaurus/preset-classic@latest @docusaurus/theme-mermaid@latest @docusaurus/module-type-aliases@latest @docusaurus/tsconfig@latest @docusaurus/types@latest
+    ```
 
 # CI/CD
 
