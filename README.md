@@ -1,23 +1,20 @@
 # {{ cookiecutter.instance_name }}
 
-Project for Frank applications deployed by JAR or Docker
+Project for Frank applications deployed by Docker
 
 <!-- TOC -->
-* [Skeleton Project for Frank applications deployed by JAR or Docker](#skeleton-project-for-frank-applications-deployed-by-jar-or-docker)
-  * [Introduction](#introduction)
-  * [Included](#included)
-  * [Usage](#usage)
-    * [Steps](#steps)
-    * [Template variables](#template-variables)
+* [Introduction](#introduction)
+* [Included](#included)
+* [Usage](#usage)
+  * [Steps](#steps)
+  * [Template variables](#template-variables)
 <!-- TOC -->
 
 ## Introduction
-
 This project serves as a starting point for new projects or as example for existing ones.
 This "empty" Frank! will have configuration files to build and deploy.
  
 ## Included
-
 * Dockerfile
 * Docker compose
 * Publicode (WIP)
