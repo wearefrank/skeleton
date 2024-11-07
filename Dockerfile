@@ -1,6 +1,6 @@
 ARG FF_VERSION=latest
 
-FROM frankframework/frankframework:${FF_VERSION} as ff-base
+FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 
 ## Uncomment this section if the Frank! contains custom classes.
 # Copy dependencies
