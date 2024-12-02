@@ -37,6 +37,11 @@ COPY --chown=tomcat src/main/resources/ /opt/frank/resources/
 COPY --chown=tomcat src/main/secrets/ /opt/frank/secrets/
 COPY --chown=tomcat src/test/testtool/ /opt/frank/testtool/
 
+# Create h2 folder under 'tomcat' user. QoL addition to avoid Docker creating the h2 folder under 'root' when mounted.
+# This would normally cause a permission denied error because the framework running under the 'tomcat' user is not
+# allowed to write to a folder owned by 'root'.
+RUN mkdir -p /opt/frank/h2/
+
 ### Uncomment this section if the Frank! contains custom classes.
 ### section: custom-code(start)
 
