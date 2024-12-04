@@ -52,6 +52,39 @@ Access the Frank!Console by navigating to `http://localhost:8080/`.
     ```
     npm i @docusaurus/core@latest @docusaurus/preset-classic@latest @docusaurus/theme-mermaid@latest @docusaurus/module-type-aliases@latest @docusaurus/tsconfig@latest @docusaurus/types@latest
     ```
+## Merge changes from 'Skeleton' project template
+The 'Skeleton' project template repository will always stay up-to-date with the latest developments and best practices. It is recommended to merge changes from the Skeleton repo every one or two months.
+Otherwise projects will over time become less and less compatible with the Skeleton project. This leads to extra troubleshooting work, because usually the issues you might run into are already fixed in the
+Skeleton repo. Additionally, the Skeleton repo ia regularly expanded with new tools and features to make development and maintenance easier and faster.
+
+To merge changes from the Skeleton repo, the Skeleton repo needs to be added as an upstream. Because of the way GitHub template repositories work, the project's Git history is not related to the Skeleton repo's
+Git history. Because of this, it is needed to merge with the `--allow-unrelated-histories` argument. Unfortunatly this creates very ugly and hard to resolve merge conflicts, because Git can't use the commit history
+to diff properly. To resolve this, it is recommended to do a rebase once instead of a merge. This will apply every single commit in the project repo on top of the Skeleton repo's Git history. After a rebase, future
+merging should be as easy as merging simple PR, as for Git the project repo is now effectively a fork of the Skeleton repo with a shared Git History.
+
+1. Add the Skeleton repo as upstream.
+    ```
+    git remote add upstream https://github.com/wearefrank/skeleton.git
+    ```
+1. Fetch from upstream.
+    ```
+    git fetch upstream
+    ```
+1. Create and switch to new branch.
+    ```
+    git checkout -b <branchname-for-upstream-changes>
+    ```
+1. Merge from upstream.
+    ```
+    git merge upstream/main --allow-unrelated-histories
+    ```
+1. Stage and commit changes.
+    ```
+    git add .
+    git commit -m "<commit message>"
+    ```
+1. Create Pull Request.
+
 
 # CI/CD
 
