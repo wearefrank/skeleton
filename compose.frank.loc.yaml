@@ -1,9 +1,7 @@
 # This docker-compose file brings up an instance for local development.
 #
 # For local development it is recommended to a 'sync+restart' watch action for each configuration's 'DeploymentSpecific' files.
-# This ensures that the container is automatically restarted when a change is made in it. Additionally,
-# it is recommended to set the 'classLoaderType' to 'ScanningDirectoryClassLoader', so that the Frank!Framework
-# automatically reloads the configuration when changes are made to it.
+# This ensures that the container is automatically restarted when a change is made in it.
 #
 # Frank!Flow is included to provide a visual representation of the integration's flow. It allows users to visually configure
 # adapters by dragging and connecting components in a graphical environment, rather than directly editing XML code. 
@@ -26,7 +24,7 @@ services:
     image: ${IMAGE_ID:-${IMAGE_TAG:-wearefrank/{{ cookiecutter.instance_name_lc }}}}
     environment:
       dtap.stage: LOC
-      configurations.{{ cookiecutter.configuration_name }}.classLoaderType: ScanningDirectoryClassLoader
+      configurations.directory.classLoaderType: ScanningDirectoryClassLoader
     volumes:
       - h2-data:/opt/frank/h2:rw
       - logs:/usr/local/tomcat/logs:rw
