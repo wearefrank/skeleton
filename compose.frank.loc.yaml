@@ -1,4 +1,4 @@
-# This docker-compose file brings up an instance of {{ cookiecutter.instance_name }} for local development.
+# This docker-compose file brings up an instance for local development.
 #
 # For local development it is recommended to a 'sync+restart' watch action for each configuration's 'DeploymentSpecific' files.
 # This ensures that the container is automatically restarted when a change is made in it. Additionally,
@@ -6,10 +6,10 @@
 # automatically reloads the configuration when changes are made to it.
 #
 # To use this docker-compose file:
-#    docker compose -f ./compose.frank.dev.yaml <command> (eg. up, down)
+#    docker compose -f ./compose.frank.loc.yaml <command> (eg. up, down)
 #
 # Recommended for local developent:
-#    docker compose -f ./compose.frank.dev.yaml up --build --force-recreate --watch
+#    docker compose -f ./compose.frank.loc.yaml up --build --force-recreate --watch
 #
 # Access the Frank!Console by navigating to http://localhost:8080/.
 #
@@ -22,7 +22,7 @@ services:
         FF_VERSION: ${FF_VERSION:-latest}
     image: wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
     environment:
-      dtap.stage: DEV
+      dtap.stage: LOC
       configurations.{{ cookiecutter.configuration_name }}.classLoaderType: ScanningDirectoryClassLoader
     volumes:
       - h2-data:/opt/frank/h2:rw
