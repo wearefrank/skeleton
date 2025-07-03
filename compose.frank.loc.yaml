@@ -5,6 +5,10 @@
 # it is recommended to set the 'classLoaderType' to 'ScanningDirectoryClassLoader', so that the Frank!Framework
 # automatically reloads the configuration when changes are made to it.
 #
+# Frank!Flow is included to provide a visual representation of the integration's flow. It allows users to visually configure
+# adapters by dragging and connecting components in a graphical environment, rather than directly editing XML code. 
+# This makes the Frank!Framework more accessible, especially for users who are less familiar with XML.
+#
 # To use this docker-compose file:
 #    docker compose -f ./compose.frank.loc.yaml <command> (eg. up, down)
 #
@@ -12,6 +16,7 @@
 #    docker compose -f ./compose.frank.loc.yaml up --build --force-recreate --watch
 #
 # Access the Frank!Console by navigating to `http://frank.localtest.me:8080/` or `http://localhost:8080/`.
+# Access Frank!Flow by navigating to `http://frank-flow.localtest.me:8090/` or `http://localhost:8090/`.
 #
 services:
   frank:
@@ -62,6 +67,19 @@ services:
     ports:
       - "${PORT:-8080}:8080"
     restart: unless-stopped
+
+  frank-flow:
+    image: frankframework/frank-flow:latest
+    environment:
+      configurations.directory: /opt/frank/configurations
+    volumes:
+      - ./src/main/:/opt/frank/:rw
+    networks:
+      frank:
+        aliases:
+          - frank-flow.localtest.me
+    ports:
+      - "8090:8080"
 
 volumes:
   logs:

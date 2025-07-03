@@ -21,7 +21,14 @@ Arguments:
 - `--force-recreate` - Eventhough you built a new image, by default Docker reuses the already existing container. This forces Docker to recreate the container, which will then use your newly built image to build the new container from.
 - `--watch` - Use the Docker Watch functionality to automatically sync, restart or rebuild the container when certain files in your local source change. Which files/folders trigger what action can be found in the Docker Compose file under the `frank` service, in the `develop.watch` section.
 
-Access the Frank!Console by navigating to `http://localhost:8080/`.
+Access the Frank!Console by navigating to `http://frank.localtest.me:8080` or`http://localhost:8080/`.
+
+### Frank!Flow
+Frank!Flow is included to provide a visual representation of the integration's flow. It allows users to visually configure
+adapters by dragging and connecting components in a graphical environment, rather than directly editing XML code. This makes
+the Frank!Framework more accessible, especially for users who are less familiar with XML.
+
+Access Frank!Flow by navigating to `http://frank-flow.localtest.me:8080` or`http://localhost:8080/`.
 
 ## Local Development Docusaurus
 1. Navigate to "docusaurus" subfolder.
