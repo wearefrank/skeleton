@@ -5,7 +5,7 @@ This project builds the following artifacts:
 
 # Development
 ## Local development with Docker Compose
-Docker Compose file `compose.frank.dev.yaml` brings up an instance for local development.
+Docker Compose file `compose.frank.loc.yaml` brings up an instance for local development.
 
 It is recommended to a 'sync+restart' watch action for each configuration's 'DeploymentSpecifics' files.
 This ensures that the container is automatically restarted when a change is made in it. Additionally,
@@ -14,7 +14,7 @@ automatically reloads the configuration when changes are made to it.
 
 To use this Docker Compose file:
 ```
-docker compose -f ./compose.frank.dev.yaml up --build --force-recreate --watch
+docker compose -f ./compose.frank.loc.yaml up --build --force-recreate --watch
 ```
 Arguments:
 - `--build` - Builds a new image from your local source.
