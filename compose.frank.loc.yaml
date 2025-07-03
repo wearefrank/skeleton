@@ -20,7 +20,7 @@ services:
       pull: true # makes sure that the base image is forcefully pulled when using 'latest' tag.
       args:
         FF_VERSION: ${FF_VERSION:-latest}
-    image: wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
+    image: ${IMAGE_ID:-${IMAGE_TAG:-wearefrank/{{ cookiecutter.instance_name_lc }}}}
     environment:
       dtap.stage: LOC
       configurations.{{ cookiecutter.configuration_name }}.classLoaderType: ScanningDirectoryClassLoader
