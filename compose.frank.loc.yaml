@@ -18,8 +18,6 @@ services:
     build:
       context: .
       pull: true # makes sure that the base image is forcefully pulled when using 'latest' tag.
-      args:
-        FF_VERSION: ${FF_VERSION:-latest}
     image: ${IMAGE_ID:-${IMAGE_TAG:-wearefrank/{{ cookiecutter.instance_name_lc }}}}
     environment:
       dtap.stage: LOC
