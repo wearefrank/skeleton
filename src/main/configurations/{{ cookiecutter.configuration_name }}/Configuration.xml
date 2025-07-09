@@ -1,3 +1,15 @@
+<!-- 
+	Example:
+	```xml
+	<!DOCTYPE Configuration [
+		<!ENTITY ExampleModuleReference SYSTEM "./Configuration_ExampleModuleFile.xml">
+		]>
+
+	<Configuration name="ExampleConfiguration" active="true">
+		&ExampleModuleReference;
+	</Configuration>
+	```
+-->
 <!DOCTYPE Configuration [
 
 	]>
