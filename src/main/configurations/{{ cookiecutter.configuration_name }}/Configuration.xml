@@ -2,6 +2,6 @@
 
 	]>
 
-<Configuration name="{{ cookiecutter.configuration_name }}">
+<Configuration name="{{ cookiecutter.configuration_name }}" active="true">
 
 </Configuration>
