@@ -21,7 +21,7 @@ services:
     build:
       context: .
       pull: true # makes sure that the base image is forcefully pulled when using 'latest' tag.
-    image: ${IMAGE_ID:-${IMAGE_TAG:-wearefrank/{{ cookiecutter.instance_name_lc }}}}
+    image: ${IMAGE_ID:-${IMAGE_TAG:-ghcr.io/wearefrank/{{ cookiecutter.instance_name_lc }}}}
     environment:
       dtap.stage: LOC
       configurations.directory.classLoaderType: ScanningDirectoryClassLoader

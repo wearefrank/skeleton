@@ -9,7 +9,7 @@
 #
 services:
   frank:
-    image: wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
+    image: ghcr.io/wearefrank/{{ cookiecutter.instance_name_lc }}:${VERSION:-latest}
     environment:
       TZ: ${TIME_ZONE:-Europe/Amsterdam}
       dtap.stage: ${DTAP_STAGE:-LOC}
