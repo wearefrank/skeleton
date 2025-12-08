@@ -14,7 +14,7 @@ jobs:
       version-next-tag: ${{ steps.next-version.outputs.release-tag }}
       version-next-type: ${{ steps.next-version.outputs.release-type }}
     steps:
-      - uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      - uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
         with:
           disable-sudo: true
           egress-policy: audit
@@ -22,10 +22,10 @@ jobs:
             github.com:443
 
       - name: Checkout
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 #6.0.1
       
       - name: "Setup Node"
-        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 #6.0.0
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f #6.1.0
         with:
           node-version: 24
       
@@ -40,7 +40,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
   ci:
-    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@5cc3ad4df08fbbf281fd330b440834815a69e568 #2.1.1
+    uses: wearefrank/ci-cd-templates/.github/workflows/ci-generic.yml@f0464c530781f47b0109382966b8c1f05732aa0e #2.1.2
     needs: analyze-commits
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
@@ -54,12 +54,12 @@ jobs:
       - analyze-commits
       - ci
     steps:
-      - uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      - uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
         with:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 #6.0.1
         with:
           token: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
@@ -76,7 +76,7 @@ jobs:
           merge-multiple: true
 
       - name: Setup Node
-        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 #6.0.0
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f #6.1.0
         with:
           node-version: 24
       
@@ -90,7 +90,7 @@ jobs:
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
 
   docker-release:
-    uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@5cc3ad4df08fbbf281fd330b440834815a69e568 #2.1.1
+    uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@f0464c530781f47b0109382966b8c1f05732aa0e #2.1.2
     needs: 
       - analyze-commits
       - release
@@ -108,4 +108,4 @@ jobs:
       - release
     # Set to true to enable Docusaurus publishing to GitHub Pages
     if: false
-    uses: wearefrank/ci-cd-templates/.github/workflows/docusaurus-release.yml@5cc3ad4df08fbbf281fd330b440834815a69e568 #2.1.1
+    uses: wearefrank/ci-cd-templates/.github/workflows/docusaurus-release.yml@f0464c530781f47b0109382966b8c1f05732aa0e #2.1.2
