@@ -5,6 +5,7 @@ FROM frankframework/frankframework:${FF_VERSION} AS ff-base
 # Copy dependencies
 COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
 COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
+COPY --chown=tomcat lib/drivers/ /opt/frank/drivers/
 
 ### Uncomment this section if the Frank! contains custom classes.
 ### section: custom-code(start)

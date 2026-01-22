@@ -3,6 +3,20 @@
 This project builds the following artifacts:
 * A docker image that can be used to run this application stand-alone.
 
+# Project Structure
+
+## Drivers
+Drivers needed for jdbc/jms connection can be added to `./lib/drivers` and will become part of the built image under `/opt/frank/drivers`.
+
+For drivers that are only needed for local development or CI/CD, it is recommended to instead place the driver in the `./contrib` folder somewhere and mount the driver
+in the Docker Compose file. For example:
+```yaml
+services:
+  frank:
+    volumes:
+      - ./contrib/activemq/drivers/activemq-all-6.2.0.jar:/opt/frank/drivers/activemq-all-6.2.0.jar
+```
+
 # Development
 ## Local development with Docker Compose
 Docker Compose file `compose.frank.loc.yaml` brings up an instance for local development.
