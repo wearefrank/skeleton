@@ -28,6 +28,7 @@ services:
     volumes:
       - h2-data:/opt/frank/h2:rw
       - logs:/usr/local/tomcat/logs:rw
+      - ./src/test/testtool:/opt/frank/testtool:rw
     develop:
       watch:
         - action: sync+restart
@@ -39,9 +40,6 @@ services:
         - action: sync
           path: ./src/main/resources
           target: /opt/frank/resources
-        - action: sync
-          path: ./src/test/testtool
-          target: /opt/frank/testtool
         - action: sync+restart
           path: ./src/main/secrets
           target: /opt/frank/secrets
