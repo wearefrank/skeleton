@@ -49,7 +49,7 @@ RUN mkdir -p /opt/frank/h2/
 ### section: custom-code(end)
 
 ENV application.server.type.custom=${TRANSACTION_MANAGER:-NARAYANA} \
-	credentialFactory.class=nl.nn.credentialprovider.PropertyFileCredentialFactory \
+	credentialFactory.class=org.frankframework.credentialprovider.PropertyFileCredentialFactory \
 	credentialFactory.map.properties=/opt/frank/secrets/credentials.properties
 
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=60 \
