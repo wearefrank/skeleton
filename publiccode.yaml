@@ -39,7 +39,7 @@ maintenance:
   type: "community"
 
   contacts:
-    - name: Sander Bult
+    - name: Jeroen Janssen van Roosendaal
 
 localisation:
   localisationReady: true
