@@ -34,11 +34,11 @@ jobs:
           node-version: lts/*
       
       - name: Install dependencies
-        run: npm ci --prefix .github/semantic-release
+        run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
       
       - name: Get next version
         id: next-version
-        run: npm exec --prefix .github/semantic-release semantic-release -- --dryRun
+        run: corepack yarn --cwd .github/semantic-release semantic-release --dryRun
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
@@ -90,10 +90,10 @@ jobs:
           node-version: lts/*
       
       - name: Install dependencies
-        run: npm ci --prefix .github/semantic-release
+        run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
       
       - name: Semantic Release
-        run: npm exec --prefix .github/semantic-release semantic-release
+        run: corepack yarn --cwd .github/semantic-release semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
