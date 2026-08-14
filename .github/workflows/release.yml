@@ -34,11 +34,11 @@ jobs:
           node-version: lts/*
       
       - name: Install dependencies
-        run: npm install --prefix .github/semantic-release
+        run: npm ci --prefix .github/semantic-release
       
       - name: Get next version
         id: next-version
-        run: npx --prefix .github/semantic-release semantic-release --dryRun
+        run: npm exec --prefix .github/semantic-release semantic-release -- --dryRun
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
@@ -90,10 +90,10 @@ jobs:
           node-version: lts/*
       
       - name: Install dependencies
-        run: npm install --prefix .github/semantic-release
+        run: npm ci --prefix .github/semantic-release
       
       - name: Semantic Release
-        run: npx --prefix .github/semantic-release semantic-release
+        run: npm exec --prefix .github/semantic-release semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
           GH_TOKEN: ${{ secrets.WEAREFRANK_BOT_PAT }}
