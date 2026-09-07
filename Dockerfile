@@ -47,6 +47,7 @@ RUN mkdir -p /opt/frank/h2/
 # COPY --from=custom-code-builder --chown=tomcat /tmp/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
 
 ### section: custom-code(end)
+
 ARG TRANSACTION_MANAGER=NARAYANA
 
 ENV application.server.type.custom=${TRANSACTION_MANAGER} \
