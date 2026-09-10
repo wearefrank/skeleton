@@ -1,5 +1,5 @@
 # This docker-compose file brings up an example instance.
-# 
+#
 # A H2 file-based database is used as example. This is not recommended for production environments.
 #
 # To use this docker-compose file:

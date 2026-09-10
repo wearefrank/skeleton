@@ -4,7 +4,7 @@
 # This ensures that the container is automatically restarted when a change is made in it.
 #
 # Frank!Flow is included to provide a visual representation of the integration's flow. It allows users to visually configure
-# adapters by dragging and connecting components in a graphical environment, rather than directly editing XML code. 
+# adapters by dragging and connecting components in a graphical environment, rather than directly editing XML code.
 # This makes the Frank!Framework more accessible, especially for users who are less familiar with XML.
 #
 # To use this docker-compose file:

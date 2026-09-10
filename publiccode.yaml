@@ -21,7 +21,7 @@ description:
   en:
     shortDescription: >
       The {{ cookiecutter.instance_name }} component is an integration component.
-          
+
     longDescription: >
       The {{ cookiecutter.instance_name }} component is an integration component.
 

@@ -27,15 +27,15 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
-      
+
       - name: "Setup Node"
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e #6.4.0
         with:
           node-version: lts/*
-      
+
       - name: Install dependencies
         run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
-      
+
       - name: Get next version
         id: next-version
         run: ./.github/semantic-release/node_modules/.bin/semantic-release --dryRun
@@ -59,7 +59,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - analyze-commits
       - ci
     steps:
@@ -77,7 +77,7 @@ jobs:
         with:
           pattern: pre-build-*
           merge-multiple: true
-  
+
       - name: Download Build Artifacts
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #8.0.1
         with:
@@ -88,10 +88,10 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e #6.4.0
         with:
           node-version: lts/*
-      
+
       - name: Install dependencies
         run: corepack yarn --cwd .github/semantic-release install --frozen-lockfile
-      
+
       - name: Semantic Release
         run: ./.github/semantic-release/node_modules/.bin/semantic-release
         env:
@@ -100,7 +100,7 @@ jobs:
 
   docker-release:
     uses: wearefrank/ci-cd-templates/.github/workflows/docker-release-generic.yml@3ea6c89c3ffb6c75528377110fea41851bc87c01 #2.4.11
-    needs: 
+    needs:
       - analyze-commits
       - release
     permissions:
@@ -118,7 +118,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    needs: 
+    needs:
       - release
     # Set to true to enable Docusaurus publishing to GitHub Pages
     if: false
