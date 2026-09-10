@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       ff-version-tag:
-        description: 'F!F version tag requested to update in your project to. It has to be after 8.0.1(including).'    
+        description: 'F!F version tag requested to update in your project to. It has to be after 8.0.1(including).'
         required: true
         default: 'latest'
 

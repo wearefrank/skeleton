@@ -1,18 +1,18 @@
-<!-- 
-	Example:
-	```xml
-	<!DOCTYPE Configuration [
-		<!ENTITY ExampleModuleReference SYSTEM "./Configuration_ExampleModuleFile.xml">
-		]>
+<!--
+    Example:
+    ```xml
+    <!DOCTYPE Configuration [
+        <!ENTITY ExampleModuleReference SYSTEM "./Configuration_ExampleModuleFile.xml">
+        ]>
 
-	<Configuration name="ExampleConfiguration" active="true">
-		&ExampleModuleReference;
-	</Configuration>
-	```
+    <Configuration name="ExampleConfiguration" active="true">
+        &ExampleModuleReference;
+    </Configuration>
+    ```
 -->
 <!DOCTYPE Configuration [
 
-	]>
+    ]>
 
 <Configuration name="{{ cookiecutter.configuration_name }}" active="true">
 

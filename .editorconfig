@@ -1,0 +1,22 @@
+root = true
+
+# Keep source, configuration, fixture, and documentation files portable.
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+charset = utf-8
+
+[*.{json,jsonnet,libsonnet,yml,yaml,js,jsx,ts,tsx}]
+indent_style = space
+indent_size = 2
+
+[*.{md,mdx}]
+trim_trailing_whitespace = false
+
+# Additional file-specific overrides can be added below.
+# Example: UTF-16LE for Legacy Powershell 5.1
+# [scripts/legacy-script.ps1]
+# charset = utf-16le
