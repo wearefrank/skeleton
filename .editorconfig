@@ -9,7 +9,7 @@ indent_style = space
 indent_size = 4
 charset = utf-8
 
-[*.{json,jsonnet,libsonnet,yml,yaml,js,ts}]
+[*.{json,jsonnet,libsonnet,yml,yaml,js,jsx,ts,tsx}]
 indent_style = space
 indent_size = 2
 
