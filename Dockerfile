@@ -7,27 +7,26 @@ COPY --chown=tomcat lib/server/ /usr/local/tomcat/lib/
 COPY --chown=tomcat lib/webapp/ /usr/local/tomcat/webapps/ROOT/WEB-INF/lib/
 COPY --chown=tomcat src/main/drivers/ /opt/frank/drivers/
 
-### Uncomment this section if the Frank! contains custom classes.
-### section: custom-code(start)
+# ## Uncomment this section if the Frank! contains custom classes.
+# ## section: custom-code(start)
 
 # # Compile custom class
-# FROM eclipse-temurin:17-jdk-jammy AS custom-code-builder
+# FROM eclipse-temurin:25-jdk AS custom-code-builder
 
 # # Copy dependencies
 # COPY --from=ff-base /usr/local/tomcat/lib/ /usr/local/tomcat/lib/
 # COPY --from=ff-base /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT
+# ADD --checksum=sha256:3488a4e9994c26596baaceebee58cad36a50e3bdaec5be72b5834d3c3b560306 https://repo.maven.apache.org/maven2/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar /tmp/lombok.jar
 
 # # Copy custom class
 # COPY src/main/java /tmp/java
 # RUN mkdir /tmp/classes && \
-#     javac \
-#     /tmp/java/org/<path-to-customcode-file>.java \
-#     -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*" \
-#     -verbose -d /tmp/classes
+# 	find /tmp/java -name "*.java" > sources.txt && \
+# 	javac @sources.txt -proc:full -classpath "/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/*:/usr/local/tomcat/lib/*:/tmp/lombok.jar" -verbose -d /tmp/classes
 
 # FROM ff-base
 
-### section: custom-code(end)
+# ## section: custom-code(end)
 
 # Copy Frank!
 COPY --chown=tomcat src/main/configurations/ /opt/frank/configurations/
