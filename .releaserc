@@ -1,5 +1,11 @@
 {
-  "branches": ["main", "1.0.x"],
+  "branches": [
+    "+([0-9])?(.{+([0-9]),x}).x",
+    "main",
+    "master",
+    {"name": "next", "prerelease": true},
+    {"name": "next-major", "prerelease": true}
+  ],
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
@@ -61,7 +67,7 @@
     ],
     [
       "@semantic-release/exec", {
-        "verifyReleaseCmd": "echo \"release-tag=v${nextRelease.version}\" >> $GITHUB_OUTPUT; echo \"release-version=${nextRelease.version}\" >> $GITHUB_OUTPUT; echo \"release-type=${nextRelease.type}\" >> $GITHUB_OUTPUT"
+        "verifyReleaseCmd": "echo \"release-tag=v${nextRelease.version}\" >> $GITHUB_OUTPUT; echo \"release-version=${nextRelease.version}\" >> $GITHUB_OUTPUT; echo \"release-type=${nextRelease.type}\" >> $GITHUB_OUTPUT; echo \"release-channel=${nextRelease.channel}\" >> $GITHUB_OUTPUT"
       }
     ],
     [
