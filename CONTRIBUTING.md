@@ -128,6 +128,70 @@ A breaking change means that this version is not backwards compatible with the p
 * The commit type (e.g. chore) is still relevant for breaking changes. This information appears in the release notes in the same way as a non-breaking change.
 * For non-breaking changes, omit the line with BREAKING and make a commit message like the first line shown.
 
+## Release channels and maintenance releases
+
+Releases are normally made from `main`. Two other kinds of branches can publish releases as well. A branch only releases if it has exactly one of the names below.
+
+| Branch name | Use it for | Example version | Docker tags |
+| --- | --- | --- | --- |
+| `main` | Regular releases | `2.1.0` | `2.1.0`, `2.1`, `2`, `latest` |
+| `next-major` | Collecting breaking changes for the next major version | `3.0.0-next-major.1` | `3.0.0-next-major.1`, `next-major` |
+| `next` | Collecting new features for the next minor version | `2.2.0-next.1` | `2.2.0-next.1`, `next` |
+| `1.x` or `1.4.x` | Fixing an older version after `main` has moved on | `1.4.1` | `1.4.1`, `1.4`, `1`, and the branch name (`1.4.x`). Never `latest` |
+
+### Release channels (`next-major` and `next`)
+
+**Why:** A breaking change on `main` releases a new major version immediately. That is not always what you want:
+* Several breaking changes that belong together, or one breaking change that is built up over multiple PRs, should reach users as a single release.
+* Small breaking changes, such as renaming a property or a file, are not worth a major version on their own. Collect them on `next-major` until there is enough reason to release a new major.
+* A breaking change may need testing by early adopters before everybody gets it.
+
+On a channel branch every release is a pre-release. `latest` and tags like `3` do not move, so nobody gets the changes by accident. Users who want to try them can pin the exact version (`3.0.0-next-major.1`) or follow the `next-major` tag, which always points to the latest pre-release. Each new release on the branch increments the last number (`.2`, `.3`, ...). `next` works the same way for features that should not be released yet.
+
+**How:**
+1. Create the branch from `main` and push it:
+    ```
+    git switch main
+    git pull
+    git switch -c next-major
+    git push -u origin next-major
+    ```
+1. Open pull requests that target `next-major` instead of `main`. A `feat:` or `fix:` commit creates a new pre-release, a `chore:` commit does not.
+1. Merge `main` into `next-major` regularly, so the branch does not drift away:
+    ```
+    git switch next-major
+    git pull
+    git merge main
+    git push
+    ```
+    > [!WARNING]
+    > Always **merge** `main` into `next-major`. Never rebase it and never force-push it. Release tags and release commits (`CHANGELOG.md`, `BuildInfo`) live on this branch, and rewriting its history breaks them. This applies to every release branch (`next`, `next-major` and the maintenance branches).
+1. When there is sufficient reason for a new major, open a pull request from `next-major` to `main`. Merge it with a merge commit, not a squash, so the original commit messages (including `BREAKING:`) are preserved. `main` then releases the major version (e.g. `3.0.0`) and updates `latest`.
+
+### Maintenance releases (`1.x` and `1.4.x`)
+
+**Why:** `main` has moved on to `2.x`, but some users are still on `1.x` and need a fix. Releasing it from `main` would force them to take all the changes of version 2. A fix on a maintenance branch releases a patch for the old version only (`1.4.1`) and does not touch `main` or `latest`.
+
+The branch name determines what it may release:
+* `1.4.x` allows fixes only: `1.4.1`, `1.4.2`, ...
+* `1.x` also allows new features: `1.5.0`, `1.6.0`, ...
+
+**How:**
+1. Find the latest tag of the old version:
+    ```
+    git fetch --tags
+    git tag --list "v1.*" --sort=-v:refname
+    ```
+1. Create the branch from that tag and push it. This is only needed once per old version:
+    ```
+    git switch -c 1.4.x v1.4.0
+    git push -u origin 1.4.x
+    ```
+1. Open a pull request with a `fix:` commit that targets `1.4.x`. After merging, `1.4.1` is released.
+1. Apply the same fix to `main` (e.g. `git cherry-pick <commit hash>`) if the bug exists there too.
+
+A breaking change (`BREAKING:`) on a maintenance branch fails the release, because it would require a major version outside the branch's range. Put it on `main` or `next-major` instead.
+
 # Checklist for testing CI/CD
 
 Here is a checklist for testing the CI/CD.
