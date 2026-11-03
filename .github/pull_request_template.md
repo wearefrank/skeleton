@@ -4,6 +4,8 @@ _What does this PR change and why? Replace this text with your description._
 <details>
 <summary><b>Checklist</b></summary>
 
+_Tick every item, also the ones that do not apply._
+
 - [ ] Related issues and PRs are referenced (e.g. `Closes #123`)
 - [ ] Properties: names are camelCase, changes to existing ones are backwards compatible (or marked `BREAKING`), and new ones are added to a `DeploymentSpecifics.properties` file with a default value (may be empty) and a comment if the name alone is not clear
 - [ ] Larva tests are added or updated
