@@ -1,0 +1,29 @@
+name: Pull Request Rules
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pull-request-rules:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+
+      # Base rules from ci-cd-templates plus the rules in .github/pull-request-rules.js
+      # TODO: pin to a release of ci-cd-templates when pull-request-rules is released
+      - name: Check pull request rules
+        uses: wearefrank/ci-cd-templates/pull-request-rules@agents/github-actions-pull-request-rules
