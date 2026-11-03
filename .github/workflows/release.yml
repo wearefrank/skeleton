@@ -5,6 +5,12 @@ on:
     branches:
       - main
       - master
+      # Maintenance releases (patches on older versions), e.g. 1.x or 1.2.x
+      - '[0-9]+.x'
+      - '[0-9]+.[0-9]+.x'
+      # Release channels, see .releaserc
+      - next
+      - next-major
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -17,6 +23,7 @@ jobs:
       version-next: ${{ steps.next-version.outputs.release-version }}
       version-next-tag: ${{ steps.next-version.outputs.release-tag }}
       version-next-type: ${{ steps.next-version.outputs.release-type }}
+      version-next-channel: ${{ steps.next-version.outputs.release-channel }}
     steps:
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
@@ -112,6 +119,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
     with:
       version: ${{ needs.analyze-commits.outputs.version-next }}
+      channel: ${{ needs.analyze-commits.outputs.version-next-channel }}
 
   docusaurus-release:
     permissions:
