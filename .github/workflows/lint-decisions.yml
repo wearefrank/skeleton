@@ -1,0 +1,45 @@
+name: Lint Architectural Decision Records
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - '[0-9]+.x'
+      - '[0-9]+.[0-9]+.x'
+      - next
+      - next-major
+    paths:
+      - "docs/decisions/**"
+      - ".github/skills/write-adr/**"
+      - ".claude/skills/write-adr/**"
+      - ".github/workflows/lint-decisions.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #6.0.2
+
+      # Uses the rules in docs/decisions/.markdownlint.yml
+      - name: Lint ADRs
+        uses: DavidAnson/markdownlint-cli2-action@696eb3f2509270d7b882d2aa68347bc676e7af34 # v25.0.0
+        with:
+          globs: docs/decisions/**/*.md
+
+      - name: Check skill copies are identical
+        run: diff --recursive .github/skills/write-adr .claude/skills/write-adr
