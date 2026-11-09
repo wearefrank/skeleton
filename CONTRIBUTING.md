@@ -107,6 +107,13 @@ merging should be as easy as merging simple PR, as for Git the project repo is n
 1. Create Pull Request.
 
 
+# Architectural decisions
+
+Before opening a pull request, check whether the change contains an architecturally significant decision, for example about an API or protocol, authentication, error handling, data mapping or a deviation from the project template.
+If so, record it as an Architectural Decision Record (ADR) in the same pull request. See [docs/decisions/README.md](docs/decisions/README.md) for when to write an ADR and how.
+The `write-adr` skill for GitHub Copilot and Claude Code can write the ADR for you.
+
+
 # CI/CD
 
 We use conventional commits, see https://www.conventionalcommits.org/en/v1.0.0/. Releases are created automatically by GitHub Actions, see [.github/workflows/ci.yml](.github/workflows/ci.yml) and [.github/workflows/release.yml](.github/workflows/release.yml).

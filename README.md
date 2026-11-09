@@ -23,6 +23,8 @@ This "empty" Frank! will have configuration files to build and deploy.
 * GitHub Actions
   * Continuous Integration workflow
   * Release workflow
+  * ADR lint workflow
+* Architectural Decision Records ([MADR](https://adr.github.io/madr/) 4.0.0) in [docs/decisions](docs/decisions), with a `write-adr` skill for GitHub Copilot and Claude Code
 
 Please check if you deem all these functionalities necessary, if not remove them.
 
